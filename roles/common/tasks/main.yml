@@ -1,0 +1,22 @@
+---
+# tasks file for roles/common
+- name:  Update (apt update -y)
+  apt:
+    name: '*'
+    state: present
+    update_cache: yes
+
+- name: UPGRADE (apt upgrade -y)
+  apt:
+    upgrade: true # yes
+    
+- name: Install packages  
+  apt:
+    name: '{{ item }}'
+    state: present
+  loop:
+    - python3-pip
+    - zip
+    - vim
+    - mc
+    - net-tools

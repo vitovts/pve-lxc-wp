@@ -1,0 +1,17 @@
+---
+# tasks file for roles/wp
+- name: Download WP dist
+  get_url:
+    url: http://wordpress.org/latest.zip
+    dest: /tmp/wp
+  tags: wp
+  
+- name: Unarchive WP
+  unarchive:
+    src: https://wordpress.org/latest.zip
+    dest: /var/www/html/
+    remote_src: yes
+    mode: '775'
+    owner: www-data
+    group: www-data
+  tags: wp

@@ -1,0 +1,19 @@
+---
+# -- Provision WP on Ub1804 ---
+- name: Provison WP Server on Ubuntu 1804
+  hosts: ub-wp
+  become: true
+  vars_files:
+    - vars_vault_murus.yml
+
+  roles:
+    - role: common
+    - role: php
+    - role: common
+    - role: apache2
+    - role: nginx
+    - role: common
+    - role: geerlingguy.mysql
+    - role: common
+    - role: mysql-prepare
+    - role: wp

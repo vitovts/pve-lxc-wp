@@ -1,0 +1,19 @@
+---
+# -- Provision SUSE ---
+- name: Provison SUSE Server 
+  hosts: suse
+  become: true
+  #vars_files:
+  #  - vars_vault.yml
+
+  roles:
+    - role: suse
+    #- role: php
+    #- role: common
+    #- role: apache2
+    #- role: nginx
+    #- role: common
+    #- role: geerlingguy.mysql
+    #- role: common
+    #- role: mysql-prepare
+    #- role: wp

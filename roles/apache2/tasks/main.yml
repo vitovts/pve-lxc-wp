@@ -1,0 +1,6 @@
+---
+# tasks file for roles/apache2
+- name: Remove packages  (apt remove apache2* -y) 
+  apt:
+    name: apache2*
+    state: absent

@@ -1,0 +1,32 @@
+server {
+
+    listen 80;
+    client_max_body_size 100M;
+
+    root /var/www/html/wordpress;
+    index index.php index.html index.htm index.nginx-debian.html;
+
+    server_name wp-t1.test.com;
+
+    error_log /var/log/nginx/error_log_wp_demo_site.log;
+    access_log /var/log/nginx/access_log_wp_demo_site.log;
+
+    location / {
+        try_files $uri $uri/ /index.php?$args;
+        #try_files $uri $uri/ =404;
+    }
+
+    location ~* \.(js|css|png|jpg|jpeg|gif|swf|xml|txt)$ {
+        expires 14d;
+    }
+
+    location ~ \.php$ {
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/run/php/php7.2-fpm.sock;
+    }
+
+    location ~ /\.ht {
+        deny all;
+    }
+
+}

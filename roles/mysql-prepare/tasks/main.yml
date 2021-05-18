@@ -1,0 +1,15 @@
+---
+# tasks file for roles/mysql-prepare
+- name: Create WP DB
+  mysql_db:
+    name: wp
+    state: present
+  tags: mysql-prep
+
+- name: Create WP User
+  community.mysql.mysql_user:
+    name: wpuser
+    password: '{{ wp_password }}'
+    priv: 'wp.*:ALL'
+    state: present
+  tags: mysql-prep

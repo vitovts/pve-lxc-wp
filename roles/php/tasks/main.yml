@@ -1,0 +1,28 @@
+---
+# tasks file for roles/php
+- name: Install php + 
+  apt:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - php
+    - php7.2-fpm
+    - php-curl
+    - php-gd
+    - php-mbstring
+    - php-soap
+    - php-xml
+    - php-xmlrpc
+    - php-zip
+    - php-mysql
+    - php-cli
+    - php-ldap
+    - php-zip
+  tags: php
+      
+- name: Enable php-fpm
+  systemd:
+    name: php7.2-fpm #ub1604 >>> php-fpm7.0-fpm
+    state: restarted
+    enabled: yes
+  tags: php

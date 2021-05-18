@@ -1,0 +1,34 @@
+---
+# tasks file for roles/nginx
+- name: install nginx
+  apt:
+    name: nginx
+    state: present
+  tags: nginx
+
+- name: Enable nginx
+  systemd:
+    name: nginx
+    state: restarted
+    enabled: yes
+  tags: nginx
+
+- name: Remove default nginx configuration
+  file:
+    name: '{{ item }}'
+    state: absent
+  loop:
+    - /etc/nginx/sites-available/default
+    - /etc/nginx/sites-enabled/default
+  tags: nginx
+
+- name: Copy WP config file
+  template: 
+    src: wp-test.test.com.conf.j2 #templates
+    dest: /etc/nginx/sites-enabled/wp-test.test.com.conf
+    mode: 644
+    owner: root
+    group: root
+  notify: Restart nginx #handlers >> Restart nginx
+  tags: nginx 
+

@@ -1,0 +1,9 @@
+ansible-galaxy init roles/common
+ansible-galaxy init roles/apache2
+ansible-galaxy init roles/nginx 
+ansible-galaxy init roles/php
+ansible-galaxy init roles/wp
+ansible-galaxy init roles/mysql-prepare
+ansible-galaxy install geerlingguy.mysql
+
+
